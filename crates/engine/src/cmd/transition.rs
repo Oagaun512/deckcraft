@@ -171,7 +171,7 @@ fn sound(s: &mut Session, p: &Value) -> Result<Value> {
     };
     let ct = super::insert::content_type(&name, &bytes);
     let bytes = Arc::new(bytes);
-    let audible = deckcraft_media::probe(&bytes).is_ok_and(|i| i.audio.is_some());
+    let audible = crate::media_probe::probe(&bytes).is_ok_and(|i| i.audio.is_some());
     let bytes = Arc::try_unwrap(bytes).unwrap_or_else(|a| (*a).clone());
     if !audible && !ct.starts_with("audio/") {
         return Err(bad("transition.sound", format!("{name} is not a sound file ({ct})")));

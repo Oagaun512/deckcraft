@@ -18,13 +18,19 @@ deckcraft-render = { workspace = true }
 deckcraft-pdf = { workspace = true }
 deckcraft-format = { workspace = true }
 deckcraft-pptx = { workspace = true }
-deckcraft-media = { workspace = true }
+deckcraft-media = { workspace = true, optional = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
 i_overlay = { workspace = true }
 thiserror = { workspace = true }
 log = { workspace = true }
 image = { workspace = true }
+
+[features]
+# Audio and video: probing, poster frames and playback state through deckcraft-media (its
+# decoders and symphonia). Off, the engine builds without any decoder (see src/media_probe.rs).
+default = ["media"]
+media = ["dep:deckcraft-media"]
 
 [dev-dependencies]
 deckcraft-anim = { workspace = true }

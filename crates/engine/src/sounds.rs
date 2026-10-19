@@ -93,6 +93,7 @@ fn wav(samples: &[f64]) -> Vec<u8> {
 mod tests {
     use super::*;
 
+    #[cfg(feature = "media")]
     #[test]
     fn every_builtin_sound_is_a_playable_wav() {
         for (id, _) in BUILTIN {
